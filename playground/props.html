@@ -9,19 +9,19 @@
 <body>
     <div id="app">
         <app-header v-bind:data="message"></app-header>
-        <app-content v-bind:data="num"></app-header>
+        <app-content v-bind:data1="num"></app-header>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
         var appHeader = {
-            template: '<h1>{{data}}</h1>',
+            template: '<h1 v-bind:id="data">{{data}}</h1>',
             props: ['data'],
         };
 
         var appContent = {
-            template: '<div>Content{{data}}</div>',
-            props: ['data']
+            template: '<div>Content{{data1}}</div>',
+            props: ['data1']
         }
 
         new Vue({
