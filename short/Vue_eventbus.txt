@@ -1,0 +1,45 @@
+이벤트 버스란?
+서로 관련없는 독립적인 컴포넌트간의 통신을 할 때 사용
+
+<< component - event bus - component >>
+
+보통의 사용법
+
+:: bus.vue
+import Vue from 'vue';
+export default new Vue();
+
+:: example.vue 
+import bus from './bus';
+<button @click='function'>click</button>
+
+...
+data() {[
+    return {
+        data: 1,
+    };
+]},
+methods: {
+    // 이벤트 보내는함수
+    function() {
+        // event emit을 할 수 있다
+        // param1: 이벤트이름
+        // param2: 보내고자 하는 데이터
+        bus.$emit('eventBusName', data);
+    }
+
+    // 이벤트 받는함수 (다른컴포넌트가 될 것)
+    receiveEvent() {
+        let _this = this
+        bus.$on('eventBusName', function(receiveData) {
+            _this.~~ = receiveData;
+        });
+    }
+}
+
+3줄 요약
+1. bus 초기화
+2. bus.$emit('이름', 데이터)로 버스 출발
+3. bus.$on('이름', '데이터')로 버스 종점
+주의: 단 이벤트 버스를 남용하면 추적이 불가함
+끝
